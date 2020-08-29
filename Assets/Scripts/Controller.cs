@@ -20,10 +20,10 @@ public class Controller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Determine how much should move in the z-direction
-		Vector3 movementZ = Input.GetAxis("Vertical") * Vector3.forward * moveSpeed * Time.deltaTime;
+		Vector3 movementZ = Vector3.forward * (Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
 
 		// Determine how much should move in the x-direction
-		Vector3 movementX = Input.GetAxis("Horizontal") * Vector3.right * moveSpeed * Time.deltaTime;
+		Vector3 movementX = Vector3.right * (Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime);
 
 		// Convert combined Vector3 from local space to world space based on the position of the current gameobject (player)
 		Vector3 movement = transform.TransformDirection(movementZ+movementX);
@@ -31,7 +31,7 @@ public class Controller : MonoBehaviour {
 		// Apply gravity (so the object will fall if not grounded)
 		movement.y -= gravity * Time.deltaTime;
 
-		Debug.Log ("Movement Vector = " + movement);
+		//Debug.Log ("Movement Vector = " + movement);
 
 		// Actually move the character controller in the movement direction
 		myController.Move(movement);
